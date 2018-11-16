@@ -1,5 +1,3 @@
-// All Trivia Questions
-var atq = [];
 // Trivia Questions & Answers as Objects
 var tq1 = { 
   ques: "How long did the Hundred Years' War last?",
@@ -90,19 +88,48 @@ var tq11 = {
   // ans2
 } 
 
-// Trivia Answers (in order according to above array)
-// var ta = [
-//   "Answer: It lasted 116 years, from 1337 to 1453.",
-//   "Answer: All 12 months of the year have 28 days in them!",
-//   "Answer: Just one."
-// ]
-
+// All Trivia Questions
+var atq = [tq1,tq2,tq3,tq4,tq5,tq6,tq7,tq8,tq9,tq10,tq11];
 // CountDown Number. Placed at global level to recall after answerSelected
-var cdn = 5;
-// Random Question.
-var rq = Math.floor(Math.random() * 3);
+var icdn = 4;
+// Round CountDown
+var cdn = 30;
+// Hide splash page
+var hideTriviaSplash = function(){
+  if (icdn === 0) {
+    $("#trivBody2").hide();
+  }
+}
+// StartBoolean
+var gameStart = false;
+// Initial CountDown Function. One use function.
+var icdf = function(){
+  
+  var intervalId;
 
-// CountDown Function. Hoisted function to use inbetween questions.
+  function run() {
+  clearInterval(intervalId);
+  intervalId = setInterval(decrement, 1000);
+  }
+
+  function decrement() {
+  icdn--;
+  $("#question").html("<h2>" + icdn + "</h2>");
+  if (icdn === 0) {
+    stop();
+    console.log("Let's begin. You have 30 seconds to answer each question.");
+    hideTriviaSplash();
+  }
+  }
+
+  function stop() {
+  clearInterval(intervalId);
+  }
+
+  run();
+  gameStart = true;
+}
+// CountDown Function.
 var cdf = function(){
   
   var intervalId;
@@ -117,7 +144,7 @@ var cdf = function(){
   $("#question").html("<h2>" + cdn + "</h2>");
   if (cdn === 0) {
     stop();
-    alert("Time Up!");
+    nq();
   }
   }
 
@@ -128,10 +155,13 @@ var cdf = function(){
   run();
 }
 
-cdf();
+icdf();
 
-for (var i = 0; i < 11; i++){
-  if (cdn === 0){
-    Math.floor(Math.random())
+// Loop through questions
+if (!gameStart)
+  for (var i = 0; i < atq.length; i++){
+    var questi = $('');
+    $('#qr').append(questi);
+
   }
-}
+  console.log();
