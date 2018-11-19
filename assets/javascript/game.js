@@ -1,164 +1,182 @@
-var questions = {
-  questionOne: {
-    queString: "How long did the Hundred Years' War last?",
-    answerOne: "1.) 98",
-    answerTwo: "2.) 100",
-    answerThree: "3.) 110",
-    answerFour: "4.) 116"
-    // answer is 3.
-  },
-  questionTwo: {
-    queString: "How many months of the year have 28 days?",
-    answerOne: "1.) 1",
-    answerTwo: "2.) 3 every 4 years",
-    answerThree: "3.) 17",
-    answerFour: "4.) 12"
-    // answer is 3.
-  },
-  questionThree: {
-    queString: "In the year 1900 in the U.S. what were the most popular first names given to boy and girl babies?",
-    answerOne: "1.) William and Elizabeth",
-    answerTwo: "2.) Joseph and Catherine",
-    answerThree: "3.) John and Mary",
-    answerFour: "4.) George and Anne"
-    // ans2
-  },
-  questionFour: {
-    queString: "When did the Liberty Bell get its name?",
-    answerOne: "1.) When it was made, in 1701",
-    answerTwo: "2.) When it rang on July 4, 1776",
-    answerThree: "3.) In the 19th century, when it became a symbol of the abolition of slavery",
-    answerFour: "4.) None of the above"
-    // ans2
-  },
-  questionFive: {
-    queString: "In the Roy Rogers -Dale Evans Museum, you will find Roy and Dales stuffed horses. Roy's horse was named Trigger, which was Dales horse?",
-    answerOne: "1.) Buttermilk",
-    answerTwo: "2.) Daisy",
-    answerThree: "3.) Scout",
-    answerFour: "4.) Tulip"
-    // answerOne
-  },
-  questionSix: {
-    queString: "Which of the following items was owned by the fewest U.S. homes in 1990?",
-    answerOne: "1.) Home computer",
-    answerTwo: "2.) Compact disk player",
-    answerThree: "3.) Cordless phone",
-    answerFour: "4.) Dishwasher"
-    // answerTwo
-  },
-  questionSeven: {
-    queString: "Who holds the record for the most victories in a row on the professional golf tour?",
-    answerOne: "1.) Jack Nicklaus",
-    answerTwo: "2.) Arnold Palmer",
-    answerThree: "3.) Byron Nelson",
-    answerFour: "4.) Ben Hogan"
-    // answerThree
-  },
-  questionEight: {
-    queString: "Who is third behind Hank Aaron and Babe Ruth in major league career home runs?",
-    answerOne: "1.) Reggie Jackson",
-    answerTwo: "2.) Harmon Killebrew",
-    answerThree: "3.) Willie Mays",
-    answerFour: "4.) Frank Robinson"
-    // answerThree
-  },
-  questionNine: {
-    queString: "In 1990, in what percentage of U.S. married couples did the wife earn more money than the husband?",
-    answerOne: "1.) 8",
-    answerTwo: "2.) 18",
-    answerThree: "3.) 38",
-    answerFour: "4.) 58"
-    // answerTwo
-  },
-  questionTen: {
-    queString: "The Philadelphia mint started putting a 'P' mint mark on quarters when?",
-    answerOne: "1.) 1960",
-    answerTwo: "2.) 1980",
-    answerThree: "3.) Never",
-    answerFour: "4.) All of the above"
-    // answerTwo
-  },
-  questionEleven: {
-    queString: "Which of these characters turned 40 years old in 1990?",
-    answerOne: "1.) Charlie Brown",
-    answerTwo: "2.) Bugs Bunny",
-    answerThree: "3.) Mickey Mouse",
-    answerFour: "4.) Fred Flinstone"
-    // answerThree
-  }
-}
-// CountDown Number. Placed at global level to recall after answerSelected
-var icdn = 4;
-// Round CountDown
-var cdn = 30;
-// Hide splash page
-var hideTriviaSplash = function(){
-  if (icdn === 0) {
-    $("#trivBody2").hide();
-  }
-}
-// StartBoolean
-var gameStart = false;
-// Initial CountDown Function. One use function.
-var icdf = function(){
-  
-  var intervalId;
+var panel = $("#gameArea");
+var countStartNumber = 30;
 
-  function run() {
-  clearInterval(intervalId);
-  intervalId = setInterval(decrement, 1000);
-  }
+// Question set
+var questions = [{
+  question: "Who is Daisy to Mario?",
+  answers: ["Competition", "Luigi's Girlfriend", "Princess from a different castle", "All of the above"],
+  correctAnswer: "All of the above",
+  image: ""
+}, {
+  question: "Which version of Kirby was the original?",
+  answers: ["Kirby: Adventure", "Kirby: Dream Land", "Kirby: Dream Course", "Kirby: Star Stacker"],
+  correctAnswer: "Kirby: Dream Land",
+  image: ""
+}, {
+  question: "How many Call Of Duty games are out now?",
+  answers: ["4", "6", "10", "15"],
+  correctAnswer: "15",
+  image: ""
+}, {
+  question: "What game hosts the largest overall prize pool for major league gaming?",
+  answers: ["League Of Legends", "DOTA 2", "Overwatch", "Fortnite"],
+  correctAnswer: "DOTA 2",
+  image: ""
+}, {
+  question: "Link, listen!",
+  answers: ["Navi", "Magi", "Boroque", "Pretzi"],
+  correctAnswer: "Navi",
+  image: ""
+}, {
+  question: "Saddest moment of pokemon?",
+  answers: ["Ash getting petrified", "Butterfree migrating", "Pikachu's rival dying", "Mom let's Ash grow up"],
+  correctAnswer: "Butterfree migrating",
+  image: ""
+}, {
+  question: "What game title included the first 'easter egg'?",
+  answers: ["Harvest Moon", "Gauntlet", "Adventure", "Madden NFL"],
+  correctAnswer: "Adventure",
+  image: ""
+}, {
+  question: "Tetris Attack for the SNES featured what character as the mascot?",
+  answers: ["Donkey Kong", "QBert", "Wreckit Ralph", "Yoshi"],
+  correctAnswer: "Yoshi",
+  image: ""
+}];
 
-  function decrement() {
-  icdn--;
-  $("#question").html("<h2>" + icdn + "</h2>");
-  if (icdn === 0) {
-    stop();
-    console.log("Let's begin. You have 30 seconds to answer each question.");
-    hideTriviaSplash();
-  }
-  }
+// Variable to hold our setInterval
+var timer;
+var game = {
 
-  function stop() {
-  clearInterval(intervalId);
+  questions: questions,
+  currentQuestion: 0,
+  counter: countStartNumber,
+  correct: 0,
+  incorrect: 0,
+
+  countdown: function() {
+    this.counter--;
+    $("#counter-number").text(this.counter);
+    if (this.counter === 0) {
+      console.log("TIME UP");
+      this.timeUp();
+    }
+  },
+
+  loadQuestion: function() {
+
+    timer = setInterval(this.countdown.bind(this), 1000);
+
+    panel.html("<h2>" + questions[this.currentQuestion].question + "</h2>");
+
+    for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
+      panel.append("<button class='answer-button' id='button' data-name='" + questions[this.currentQuestion].answers[i]
+      + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
+    }
+  },
+
+  nextQuestion: function() {
+    this.counter = window.countStartNumber;
+    $("#counter-number").text(this.counter);
+    this.currentQuestion++;
+    this.loadQuestion.bind(this)();
+  },
+
+  timeUp: function() {
+
+    clearInterval(window.timer);
+
+    $("#counter-number").text(this.counter);
+
+    panel.html("<h2>Out of Time!</h2>");
+    panel.append("<h3>The Correct Answer was: " + questions[this.currentQuestion].correctAnswer);
+    panel.append("<img src='" + questions[this.currentQuestion].image + "' />");
+
+    if (this.currentQuestion === questions.length - 1) {
+      setTimeout(this.results, 3 * 1000);
+    }
+    else {
+      setTimeout(this.nextQuestion, 3 * 1000);
+    }
+  },
+
+  results: function() {
+
+    clearInterval(window.timer);
+
+    panel.html("<h2>All done, heres how you did!</h2>");
+
+    $("#counter-number").text(this.counter);
+
+    panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
+    panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
+    panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
+    panel.append("<br><button id='start-over'>Start Over?</button>");
+  },
+
+  clicked: function(e) {
+    clearInterval(window.timer);
+    if ($(e.target).attr("data-name") === questions[this.currentQuestion].correctAnswer) {
+      this.answeredCorrectly();
+    }
+    else {
+      this.answeredIncorrectly();
+    }
+  },
+
+  answeredIncorrectly: function() {
+
+    this.incorrect++;
+
+    clearInterval(window.timer);
+
+    panel.html("<h2>Nope!</h2>");
+    panel.append("<h3>The Correct Answer was: " + questions[this.currentQuestion].correctAnswer + "</h3>");
+    panel.append("<img src='" + questions[this.currentQuestion].image + "' />");
+
+    if (this.currentQuestion === questions.length - 1) {
+      setTimeout(this.results.bind(this), 3 * 1000);
+    }
+    else {
+      setTimeout(this.nextQuestion.bind(this), 3 * 1000);
+    }
+  },
+
+  answeredCorrectly: function() {
+
+    clearInterval(window.timer);
+
+    this.correct++;
+
+    panel.html("<h2>Correct!</h2>");
+    panel.append("<img src='" + questions[this.currentQuestion].image + "' />");
+
+    if (this.currentQuestion === questions.length - 1) {
+      setTimeout(this.results.bind(this), 3 * 1000);
+    }
+    else {
+      setTimeout(this.nextQuestion.bind(this), 3 * 1000);
+    }
+  },
+
+  reset: function() {
+    this.currentQuestion = 0;
+    this.counter = countStartNumber;
+    this.correct = 0;
+    this.incorrect = 0;
+    this.loadQuestion();
   }
+};
 
-  run();
-  gameStart = true;
-}
-// CountDown Function.
-var cdf = function(){
-  
-  var intervalId;
+// CLICK EVENTS
 
-  function run() {
-  clearInterval(intervalId);
-  intervalId = setInterval(decrement, 1000);
-  }
+$(document).on("click", "#start-over", game.reset.bind(game));
 
-  function decrement() {
-  cdn--;
-  $("#question").html("<h2>" + cdn + "</h2>");
-  if (cdn === 0) {
-    stop();
-    nq();
-  }
-  }
+$(document).on("click", ".answer-button", function(e) {
+  game.clicked.bind(game, e)();
+});
 
-  function stop() {
-  clearInterval(intervalId);
-  }
-
-  run();
-}
-
-icdf();
-
-// Loop through questions
-if (!gameStart)
-  for (var i = 0; i < questions.length; i++){
-    $('#qr').append('<h2>' + questions.questionOne.queString + '</h2>');
-    $('#qa').append(questions.questionOne.answerOne);
-  }
-  console.log(questions.questionOne.queString);
+$(document).on("click", "#start", function() {
+  $("#sub-wrapper").prepend("<h2>Time Remaining: <span id='counter-number'>30</span> Seconds</h2>");
+  game.loadQuestion.bind(game)();
+});
