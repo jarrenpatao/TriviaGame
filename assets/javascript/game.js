@@ -6,42 +6,42 @@ var questions = [{
   question: "Who is Daisy to Mario?",
   answers: ["Competition", "Luigi's Girlfriend", "Princess from a different castle", "All of the above"],
   correctAnswer: "All of the above",
-  image: ""
+  image: "assets/images/Daisy.gif"
 }, {
   question: "Which version of Kirby was the original?",
   answers: ["Kirby: Adventure", "Kirby: Dream Land", "Kirby: Dream Course", "Kirby: Star Stacker"],
   correctAnswer: "Kirby: Dream Land",
-  image: ""
+  image: "assets/images/Kirby.gif"
 }, {
   question: "How many Call Of Duty games are out now?",
   answers: ["4", "6", "10", "15"],
   correctAnswer: "15",
-  image: ""
+  image: "assets/images/COD.gif"
 }, {
   question: "What game hosts the largest overall prize pool for major league gaming?",
   answers: ["League Of Legends", "DOTA 2", "Overwatch", "Fortnite"],
   correctAnswer: "DOTA 2",
-  image: ""
+  image: "assets/images/Money.gif"
 }, {
   question: "Link, listen!",
   answers: ["Navi", "Magi", "Boroque", "Pretzi"],
   correctAnswer: "Navi",
-  image: ""
+  image: "assets/images/Navi.gif"
 }, {
   question: "Saddest moment of pokemon?",
   answers: ["Ash getting petrified", "Butterfree migrating", "Pikachu's rival dying", "Mom let's Ash grow up"],
   correctAnswer: "Butterfree migrating",
-  image: ""
+  image: "assets/images/Butterfree.gif"
 }, {
   question: "What game title included the first 'easter egg'?",
   answers: ["Harvest Moon", "Gauntlet", "Adventure", "Madden NFL"],
   correctAnswer: "Adventure",
-  image: ""
+  image: "assets/images/Easter.gif"
 }, {
   question: "Tetris Attack for the SNES featured what character as the mascot?",
   answers: ["Donkey Kong", "QBert", "Wreckit Ralph", "Yoshi"],
   correctAnswer: "Yoshi",
-  image: ""
+  image: "assets/images/Yoshi.gif"
 }];
 
 // Variable to hold our setInterval
